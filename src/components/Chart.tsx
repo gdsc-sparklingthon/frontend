@@ -11,7 +11,7 @@ const Chart = () => {
         ]}
         options={{
           chart: {
-            height: 500,
+            height: 300,
             width: 500,
           },
           colors: ['#FFA943'],

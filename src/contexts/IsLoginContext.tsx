@@ -29,7 +29,7 @@ export function IsLoginProvider({ children }: { children: ReactNode }) {
   //   userId !== null && token !== null,
   // );
   const [isLogin, setIsLogin] = useState<boolean>(token !== null);
-  const [isParent, setIsParent] = useState<boolean>(userRole === 'child');
+  const [isParent, setIsParent] = useState<boolean>(userRole === 'parent');
 
   // useMemo로 캐싱하지 않으면 value가 바뀔 때마다 state를 사용하는 모든 컴포넌트가 매번 리렌더링됩니다.
   const value = useMemo(

@@ -26,7 +26,7 @@ const GradientCircle: React.FC<CircleProps> = ({ gradientColors }) => {
         <circle cx="50" cy="50" r="40" fill="url(#gradient)" />
       </svg>
       <div className="absolute text-center text-white">
-        <p className="text-xl font-bold">29점</p>
+        <p className="text-[28px] font-bold text-center text-[#ffd874]">96점</p>
         <p className="text-base mb-1">매우 심한 우울상태에요</p>
       </div>
     </div>

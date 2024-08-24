@@ -11,7 +11,6 @@ const RegisterPage = () => {
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: 1) 서버에 회원가입 요청을 보내고, 2) 응답을 받아서 성공하면 로그인 페이지로 이동
 
     try {
       const response = await axios.post(

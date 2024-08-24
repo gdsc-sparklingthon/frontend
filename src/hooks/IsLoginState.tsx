@@ -3,17 +3,11 @@ import { IsLoginContext } from '../contexts/IsLoginContext';
 
 // custom hook
 export function useIsLoginState() {
-  const context = useContext(IsLoginContext);
-  if (!context) {
-    throw new Error('Cannot find IsLoginProvider');
-  }
-  return context.isLogin;
+  const { isLogin } = useContext(IsLoginContext);
+  return isLogin;
 }
 
 export function useIsParentState() {
-  const context = useContext(IsLoginContext);
-  if (!context) {
-    throw new Error('Cannot find IsLoginProvider');
-  }
-  return context.isParent;
+  const { isParent } = useContext(IsLoginContext);
+  return isParent;
 }

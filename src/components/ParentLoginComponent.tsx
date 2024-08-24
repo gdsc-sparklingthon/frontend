@@ -1,5 +1,7 @@
 import { useContext, FormEvent } from 'react';
 import { IsLoginContext } from '../contexts/IsLoginContext';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginProps {
   email: string;
@@ -14,13 +16,37 @@ const ParentLogin = ({
   password,
   setPassword,
 }: LoginProps) => {
-  const { setIsLogin } = useContext(IsLoginContext);
+  const { setIsLogin, setIsParent } = useContext(IsLoginContext); // 컨텍스트에서 상태 가져오기
+  const navigate = useNavigate(); // 페이지 이동을 위한 hook
 
-  const handleLogin = (event: FormEvent) => {
+  const handleLogin = async (event: FormEvent) => {
     event.preventDefault(); // 폼 제출 시 페이지가 새로고침되는 기본 동작을 방지
-    // TODO: 1) 서버에 로그인 요청을 보내고, 2) 응답을 받아서 성공하면 token을 받아서 localStorage에 저장합니다.
-    // 위 단계를 utils에서 처리하는걸로 할까 아님 ...? + setIsParent 추가
-    setIsLogin(true);
+
+    try {
+      const response = await axios.post(
+        'http://cp-env.eba-q4sfsf24.ap-northeast-2.elasticbeanstalk.com/auth/login',
+        {
+          isParent: true,
+          email,
+          password,
+        },
+      );
+
+      // 응답에서 토큰을 받아 localStorage에 저장
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('userRole', 'parent');
+
+      // 로그인 상태를 업데이트
+      setIsLogin(true);
+      setIsParent(true);
+
+      // 메인 페이지로 이동
+      navigate('/');
+    } catch (error) {
+      console.error('로그인 오류:', error);
+      alert('로그인에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   return (

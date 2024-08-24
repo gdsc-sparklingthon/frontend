@@ -13,7 +13,8 @@ import ChildMainPage from './pages/child/ChildMainPage';
 
 const Routing = () => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    // <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />

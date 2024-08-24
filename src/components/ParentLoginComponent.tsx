@@ -33,9 +33,14 @@ const ParentLogin = ({
       );
 
       // 응답에서 토큰을 받아 localStorage에 저장
-      const { token } = response.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('userRole', 'parent');
+      const { accessToken } = response.data;
+      if (accessToken) {
+        console.log('토큰:', accessToken);
+        localStorage.setItem('token', accessToken);
+        localStorage.setItem('userRole', 'parent');
+      } else {
+        console.error('accessToken이 응답에 포함되어 있지 않습니다.');
+      }
 
       // 로그인 상태를 업데이트
       setIsLogin(true);

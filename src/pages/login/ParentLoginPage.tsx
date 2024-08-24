@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ParentLogin from '../../components/ParentLoginComponent';
 import { useNavigate } from 'react-router-dom';
+import BearProfile from '../../assets/bearprofile.png';
 
 const ParentLoginPage = () => {
   const navigate = useNavigate();
@@ -9,7 +10,12 @@ const ParentLoginPage = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="my-[40px] w-[157px] h-[157px] bg-[#d9d9d9]" />
+      <img
+        src={BearProfile}
+        alt="bear"
+        className="mt-[40px] w-[157px] h-[157px]"
+      />
+      <p className="mb-[20px] text-2xl text-center text-black">Bear Care</p>
       <ParentLogin
         email={email}
         setEmail={setEmail}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ChildLogin from '../../components/ChildLoginComponent';
+import BearProfile from '../../assets/bearprofile.png';
 
 interface ChildLoginPageProps {
   setIsParent: (isParent: boolean | null) => void;
@@ -11,7 +12,12 @@ const ChildLoginPage = ({ setIsParent }: ChildLoginPageProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="my-[40px] w-[157px] h-[157px] bg-[#d9d9d9]" />
+      <img
+        src={BearProfile}
+        alt="bear"
+        className="mt-[40px] w-[157px] h-[157px]"
+      />
+      <p className="mb-[20px] text-2xl text-center text-black">Bear Care</p>
       <ChildLogin
         email={childEmail}
         setEmail={setChildEmail}

@@ -1,14 +1,20 @@
 import ApexCharts from 'react-apexcharts';
 
-const Chart = () => {
+interface SeriesData {
+  name: string;
+  data: number[];
+}
+
+interface ChartProps {
+  series: SeriesData[];
+}
+
+const Chart = ({ series }: ChartProps) => {
   return (
     <div>
       <ApexCharts
         type="area"
-        series={[
-          { data: [19, 26, 20, 9] },
-          //   { name: '내일의 기온', data: [30, 26, 34, 10] },
-        ]}
+        series={series}
         options={{
           chart: {
             height: 300,

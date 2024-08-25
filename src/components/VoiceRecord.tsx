@@ -95,8 +95,11 @@ const VoiceRecord = ({
   }
 
   return (
-    <div className="z-10">
+    <div className="flex flex-col items-center justify-center z-10">
       {/* <p>Microphone: {listening ? 'on' : 'off'}</p> */}
+      <p className="m-2 mb-[20px] w-[300px] h-[35px] bg-white border border-black text-center">
+        {transcript}
+      </p>
       <button onClick={handleToggleListening}>
         <img
           src={listening ? Recording : NotRecording}

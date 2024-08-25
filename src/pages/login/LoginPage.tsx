@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ChildLoginPage from './ChildLoginPage';
 import ParentLoginPage from './ParentLoginPage';
+import BearLogin from '../../assets/bearlogin.png';
 
 const LoginPage = () => {
   const [isParent, setIsParent] = useState<boolean | null>(null);
@@ -21,17 +22,21 @@ const LoginPage = () => {
         <div className="w-[168px] h-[179px]">
           <p className="text-sm text-center text-black my-[10px]">아이</p>
           <button
-            className="w-[168px] h-[179px] bg-white border border-[#c1c1c1]"
+            className="w-[168px] h-[179px] bg-white border border-[#c1c1c1] rounded-2xl"
             onClick={() => handleLogin(false)}
-          />
+          >
+            <img src={BearLogin} alt="bear" />
+          </button>
         </div>
         <div className="w-[20px]"></div>
         <div>
           <p className="text-sm text-center text-black my-[10px]">부모</p>
           <button
-            className="w-[168px] h-[179px] bg-white border border-[#c1c1c1]"
+            className="w-[168px] h-[179px] bg-white border border-[#c1c1c1] rounded-2xl"
             onClick={() => handleLogin(true)}
-          />
+          >
+            <img src={BearLogin} alt="bear" />
+          </button>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import List from './List';
+import DetailPage from '../pages/parents/DetailPage';
 
 interface Child {
   id: number;
@@ -12,54 +11,38 @@ interface Child {
   gender: string;
 }
 
-// TODO: highlight 될 child id 받아오기
+interface ProfileProps {
+  children: Child[];
+  targetId: number;
+  setTargetId: (targetId: number) => void;
+}
 
-const Profile = () => {
-  const [loading, setLoading] = useState(true); // State to handle loading
-  const [children, setChildren] = useState<Child[]>([]); // State to store child list
+const Profile = ({ children, targetId, setTargetId }: ProfileProps) => {
+  const [seeDetail, setSeeDetail] = useState(false); // State to handle detail page
   const navigate = useNavigate();
 
   const handleAddChild = () => {
     navigate('/create');
   };
 
-  useEffect(() => {
-    const fetchChildren = async () => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        alert('토큰이 없습니다. 다시 로그인해주세요.');
-        navigate('/login'); // Navigate to login if there's no token
-      }
-
-      try {
-        const response = await axios.get(
-          'http://cp-env.eba-q4sfsf24.ap-northeast-2.elasticbeanstalk.com/parent/child',
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            }, // 324723
-          },
-        );
-        console.log('자식 목록:', response.data);
-        setChildren(response.data.childList); // Assuming response.data contains the child list
-        setLoading(false); // Set loading to false after fetching data
-      } catch (error) {
-        console.error('자식 목록 불러오기 실패:', error);
-        setLoading(false); // Set loading to false even if there's an error
-      }
-    };
-
-    fetchChildren();
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
+      {seeDetail ? (
+        <div className="mt-[50px]">
+          <DetailPage childId={targetId} />
+        </div>
       ) : (
-        <div>
+        <div className="mt-[50px]">
           {children.map((child) => (
-            <List key={child.id} name={child.name} /> // Render List component with a unique key
+            <div
+              key={child.id} // Add unique key prop
+              className="m-[3px] px-[20px] w-[317px] h-[52px] bg-[#f2f2f2] flex items-center text-black cursor-pointer"
+              //   onClick={() => setTargetId(child.id)} // id를 전달
+            >
+              {child.name}
+            </div>
           ))}
           <button
             className="m-[3px] w-[317px] h-[52px] bg-[#f2f2f2] flex items-center justify-center text-2xl"
@@ -67,6 +50,13 @@ const Profile = () => {
           >
             +
           </button>
+          <div className="border-t border-gray-300 m-2 my-10" />
+          <p
+            className="w-full text-base text-center text-black cursor-pointer"
+            onClick={() => setSeeDetail(true)}
+          >
+            아이 상세정보 보기
+          </p>
         </div>
       )}
     </div>

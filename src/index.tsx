@@ -10,6 +10,7 @@ import RegisterPage from './pages/register/RegisterPage';
 import AddChildPage from './pages/parents/AddChildPage';
 import ResultPage from './pages/parents/ResultPage';
 import ChildMainPage from './pages/child/ChildMainPage';
+import DetailPage from './pages/parents/DetailPage';
 
 const Routing = () => {
   return (
@@ -22,8 +23,9 @@ const Routing = () => {
         <Route path="/create" element={<AddChildPage />} />
         // 임시
         <Route path="/test" element={<Dictaphone />} />
-        <Route path="/parent" element={<ResultPage />} />
+        {/* <Route path="/parent" element={<ResultPage />} /> */}
         <Route path="/child" element={<ChildMainPage />} />
+        {/* <Route path="/detail" element={<DetailPage />} /> */}
       </Routes>
     </BrowserRouter>
   );

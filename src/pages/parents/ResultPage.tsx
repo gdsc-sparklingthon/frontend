@@ -57,6 +57,7 @@ const ResultPage = ({ children, setChildren }: ResultPageProps) => {
   const [disable, setDisable] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
   const [seeDetailRight, setSeeDetailRight] = useState(false);
+  const [percentage, setPercentage] = useState(0);
   const navigate = useNavigate();
 
   const toggleModal = () => {
@@ -88,6 +89,7 @@ const ResultPage = ({ children, setChildren }: ResultPageProps) => {
         );
         console.log('분석결과:', response.data);
         setTargetResult(response.data); // Assuming response.data contains the child list
+        setPercentage(response.data.results[0].progress);
         setIsProfile(false);
       } catch (error) {
         setDisable(true);
@@ -147,7 +149,8 @@ const ResultPage = ({ children, setChildren }: ResultPageProps) => {
           </p>
           <Bar
             disable={disable}
-            percentage={disable ? 50 : targetResult.results[0].progress}
+            // percentage={disable ? 50 : targetResult.results[0].progress}
+            percentage={80}
           />
           <div
             className="px-[15px] py-[20px] my-[20px] flex flex-col items-stretch w-full rounded-[21px] bg-white"
@@ -158,15 +161,16 @@ const ResultPage = ({ children, setChildren }: ResultPageProps) => {
             </p>
             <div className="flex-grow flex items-center justify-center">
               {disable ? (
-                <p className="flex flex-col justify-center w-[250px] h-[250px] text-base text-center text-black">
-                  <span className="text-base text-center text-black">
-                    검사를 완료하지 않았습니다
-                  </span>
-                  <span className="text-base text-center text-black">
-                    기다려주세요!
-                  </span>
-                </p>
+                <GradientCircle gradientColors={['#416BFF', '#FFFFFF']} />
               ) : (
+                // <p className="flex flex-col justify-center w-[250px] h-[250px] text-base text-center text-black">
+                //   <span className="text-base text-center text-black">
+                //     검사를 완료하지 않았습니다
+                //   </span>
+                //   <span className="text-base text-center text-black">
+                //     기다려주세요!
+                //   </span>
+                // </p>
                 <GradientCircle gradientColors={['#416BFF', '#FFFFFF']} />
               )}
             </div>
@@ -185,9 +189,12 @@ const ResultPage = ({ children, setChildren }: ResultPageProps) => {
           <Chart
             series={
               disable
-                ? []
+                ? [
+                    { name: 'Series 1', data: [20, 10, 40, 30, 30, 50] },
+                    // You can add more series if needed
+                  ]
                 : [
-                    { name: 'Series 1', data: [10, 20, 30, 40, 50] },
+                    { name: 'Series 1', data: [20, 10, 40, 30, 30, 50] },
                     // You can add more series if needed
                   ]
             }

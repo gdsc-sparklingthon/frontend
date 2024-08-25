@@ -75,11 +75,12 @@ const DetailPage = ({ childId }: DetailPageProps) => {
       {childDetail.resultList.length === 0 ? (
         <p>아직 결과가 없습니다</p> // Display message when resultList is empty
       ) : (
-        <ul>
-          {childDetail.resultList.map((result, index) => (
-            <li key={index}>{result}</li>
-          ))}
-        </ul>
+        <p>아직 결과가 없습니다</p> // Display message when resultList is empty
+        // <ul>
+        // {childDetail.resultList.map((result, index) => (
+        // <li key={index}>{result}</li>
+        // ))}
+        // </ul>
       )}
     </div>
   );

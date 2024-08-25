@@ -35,7 +35,7 @@ const AddChildPage = () => {
       const { code } = response.data;
       if (code) {
         alert('아이 코드 생성 완료: ' + code);
-        navigate('/parent'); // TODO: 실제로는 메인 화면으로 (연동 이후에)
+        navigate('/'); // TODO: 실제로는 메인 화면으로 (연동 이후에)
       } else {
         console.error('응답에 코드가 포함되어 있지 않습니다.');
       }
